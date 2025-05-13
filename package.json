@@ -1,0 +1,32 @@
+{
+  "name": "lambda-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "nodemon"
+  },
+  "dependencies": {
+    "@aws-sdk/client-kms": "^3.808.0",
+    "@aws-sdk/client-s3": "^3.808.0",
+    "moment": "^2.30.1",
+    "sequelize": "^6.37.7",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "@types/aws-lambda": "^8.10.149",
+    "@types/node": "^22.15.17",
+    "aws-lambda": "^1.0.7",
+    "eslint": "^9.26.0",
+    "globals": "^16.1.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.5.3",
+    "serverless": "^4.14.3",
+    "serverless-offline": "^14.4.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.32.1"
+  },
+  "private": true
+}
