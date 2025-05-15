@@ -1,17 +1,19 @@
-import {Sequelize} from "sequelize";
+import {createConnection} from 'mysql2/promise'
 
 export class Database {
-  public connection: Sequelize;
+  public connection: any;
 
   constructor() {
-    this.connection = new Sequelize('database', 'username', 'password', {
-      host: 'localhost',
-      dialect: 'mysql',
-      logging: false,
-    });
   }
 
-  getConnection() {
-    return this.connection;
+  async getConnection(host: string, user: string, password: string, database: string) {
+    this.connection = await createConnection({
+      host,
+      user,
+      password,
+      database,
+      multipleStatements: true,
+      namedPlaceholders: true,
+    });
   }
 }
