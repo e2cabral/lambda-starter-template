@@ -1,0 +1,2 @@
+GET localhost:3000/dev/hello HTTP/2
+Accept: application/json

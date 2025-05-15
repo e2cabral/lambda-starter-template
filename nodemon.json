@@ -1,0 +1,9 @@
+{
+  "watch": ["src", "serverless.yml"],
+  "ext": "ts,yml,json",
+  "ignore": ["node_modules", "dist"],
+  "exec": "serverless offline",
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
