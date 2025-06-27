@@ -12,6 +12,10 @@ provider:
     POWERTOOLS_TRACER_CAPTURE_RESPONSE: true
     POWERTOOLS_TRACER_CAPTURE_ERROR: true
     LOG_LEVEL: INFO
+    DB_USER: root
+    DB_PASS: password
+    DB_NAME: database
+    DB_HOST: localhost
 
 
 functions:
