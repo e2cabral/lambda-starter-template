@@ -4,8 +4,15 @@ provider:
   name: aws
   runtime: nodejs20.x
   region: us-east-1
+  tracing:
+    lambda: true
   environment:
     NODE_ENV: production
+    POWERTOOLS_SERVICE_NAME: user-service
+    POWERTOOLS_TRACER_CAPTURE_RESPONSE: true
+    POWERTOOLS_TRACER_CAPTURE_ERROR: true
+    LOG_LEVEL: INFO
+
 
 functions:
   hello:
