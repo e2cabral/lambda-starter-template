@@ -1,6 +1,18 @@
 import winston from "winston";
 import moment from "moment";
 
+const logFormat = () => {
+  return winston.format.printf(({timestamp, level, message, durationMs}) => {
+    const memoryInfo = memoryUsage();
+
+    const date = moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
+
+    const duration = durationMs ? `(Tempo de execução: ${durationMs}ms)` : '';
+
+    return `${date} > (${memoryInfo}) > [${level.toUpperCase()}]: ${message} | ${duration}`;
+  });
+};
+
 let logger = winston.createLogger({
   level: "info",
   format: winston.format.combine(
@@ -26,18 +38,6 @@ export const warn = (message: string) => {
 
 export const profile = (message: string) => {
   logger.profile(message);
-};
-
-const logFormat = () => {
-  return winston.format.printf(({timestamp, level, message, durationMs}) => {
-    const memoryInfo = memoryUsage();
-
-    const date = moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
-
-    const duration = durationMs ? `(Tempo de execução: ${durationMs}ms)` : '';
-
-    return `${date} > (${memoryInfo}) > [${level.toUpperCase()}]: ${message} | ${duration}`;
-  });
 };
 
 const memoryUsage = () => {
