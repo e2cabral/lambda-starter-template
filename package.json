@@ -8,8 +8,14 @@
     "watch": "nodemon"
   },
   "dependencies": {
+    "@aws-lambda-powertools/logger": "^2.19.1",
+    "@aws-lambda-powertools/metrics": "^2.19.1",
     "@aws-sdk/client-kms": "^3.808.0",
     "@aws-sdk/client-s3": "^3.808.0",
+    "@middy/core": "^6.3.0",
+    "@middy/http-error-handler": "^6.3.0",
+    "@middy/http-json-body-parser": "^6.3.0",
+    "middy": "^0.36.0",
     "moment": "^2.30.1",
     "mysql2": "^3.14.1",
     "winston": "^3.17.0",
@@ -26,6 +32,7 @@
     "prettier": "^3.5.3",
     "serverless": "^4.14.3",
     "serverless-offline": "^14.4.0",
+    "tiposaurus-rex": "^0.3.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.32.1"
   },
