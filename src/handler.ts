@@ -7,10 +7,10 @@ import middy from "@middy/core";
 import httpErrorHandler from '@middy/http-error-handler';
 import {setMetrics} from "./main/metrics.config";
 import {queryExecutors} from "./queries/types/user-with-order";
-import {Database} from "./main/database.config";
+import databaseMiddleware from "./infra/middlewares/database.middleware";
 
 
-const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+const handler = async (event: APIGatewayProxyEvent, context: any): Promise<APIGatewayProxyResult> => {
   try {
     profile('execute')
     const storage = new StorageService()
@@ -22,18 +22,9 @@ const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResu
       test: z.string()
     }))
 
-    const database = new Database()
-
-    await database.getConnection(
-      process.env.DB_HOST,
-      process.env.DB_USER,
-      process.env.DB_PASS,
-      process.env.DB_NAME
-    )
-
     const test = await queryExecutors
       .getUserWithOrder(
-        database.connection,
+        context.connection,
         {userId: 1}
       )
 
@@ -55,4 +46,6 @@ const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResu
 }
 
 export const execute = middy(handler)
+  //.use(jsonBodyParser()) // POST REQUESTS
   .use(httpErrorHandler())
+  .use(databaseMiddleware())
