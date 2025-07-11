@@ -21,6 +21,7 @@ provider:
 functions:
   hello:
     handler: src/handler.execute
+    timeout: 90
     events:
       - http:
           path: hello
